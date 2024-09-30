@@ -90,18 +90,21 @@ public class MainService {
         Hospital hospital = new Hospital();
     }
 
-    public void goHouse(){
+    public void goHouse() {
         user.showUser();
-        System.out.println("포만감 : "+pet.getFullness());
-        System.out.println("청결도 : "+pet.getClean());
-        System.out.println("성장 레벨 : "+ pet.getLevel()+", 경험치 : "+pet.getExperience());
+        printAnimal();
+
+        System.out.println("포만감 : " + pet.getFullness());
+        System.out.println("청결도 : " + pet.getClean());
+        System.out.println("성장 레벨 : " + pet.getLevel() + ", 경험치 : " + pet.getExperience());
         System.out.println("============액션============");
         System.out.println("1: 밥주기, 2: 씻겨주기, 3: 산책하기, 4: 훈련하기(타자연습)");
         Integer idx = Integer.valueOf(sc.nextLine());
         action(idx);
     }
-    public void action(Integer idx){
-        switch (idx){
+
+    public void action(Integer idx) {
+        switch (idx) {
             case 1:
                 System.out.println(food.getInfo());
                 System.out.println("무엇을 주시겠습니까?");
@@ -122,5 +125,18 @@ public class MainService {
 
                 break;
         }
+    }
+
+    void printAnimal() {
+        System.out.println();
+        int num = (int) (Math.random() * 2);
+        if (num == 0) {
+            System.out.println(" (\\__/)\n( •ㅅ• )\n づ ⊂  )");
+        } else if (num == 1) {
+            System.out.println("(\\__/) \n( ^ㅅ^ )♡\n/ >♥< \"");
+        } else {
+            System.out.println("(•ㅅ•)\n/ 　 づ");
+        }
+
     }
 }

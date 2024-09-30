@@ -16,7 +16,12 @@ public class Pet {
 
     private final String[] types = {"푸들", "포메라니안", "시츄"};
     private String type;
-    private String name;
+    private static String name;
+
+    public static void setName(String name) {
+        Pet.name = name;
+    }
+
     private static final int MAX_NAME_LENGTH = 11;
     private static final String VALIDATE_NAME_LENGTH_ERROR_MESSAGE = "이름은 최대 10글자 입니다. 다시 실행하여주세요.";
     private Integer fullness = 50;
@@ -62,7 +67,9 @@ public class Pet {
         System.out.println("게임을 시작하겠습니다.");
         System.out.print("펫의 이름을 입력하세요 : ");
         String idx = sc.nextLine();
-        getInstance(idx);
+        setName(idx);
+//        getInstance(idx);
+        getInstance2();
         String type = pet.createType();
         System.out.println("당신의 반려견은 : " + type + "입니다.");
         user.showUser();
@@ -110,7 +117,7 @@ public class Pet {
     }
 
     public void addFullness(Integer range) {
-        fullness += range;
+        this.fullness += range;
         if (fullness >= 100) {
             fullness = 100;
         }

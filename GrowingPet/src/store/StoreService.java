@@ -50,13 +50,13 @@ public class StoreService {
     }
 
     public void useFood(String item){
-        if (item == "저급 사료"){
+        if (item.equals("저급 사료")){
             food.useFood(item);
             pet.addFullness(10);
-        } else if (item =="중급 사료") {
+        } else if (item.equals("중급 사료")) {
             food.useFood(item);
             pet.addFullness(30);
-        } else if(item == "고급 사료"){
+        } else if(item.equals("고급 사료")){
             food.useFood(item);
             pet.addFullness(50);
         }else{
