@@ -16,6 +16,10 @@ public class Tool {
     private Tool() {
     }
 
+    public void setInfo(String item) {
+        Tool.info.add(item);
+    }
+
     public List<String> getInfo() {
         return info;
     }

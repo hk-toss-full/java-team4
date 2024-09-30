@@ -1,9 +1,6 @@
 package store;
 
-import info.Clothes;
-import info.Food;
-import info.Pet;
-import info.User;
+import info.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +11,7 @@ public class StoreService {
     User user = User.getInstance();
     Food food = Food.getInstance();
     Pet pet = Pet.getInstance2();
+    Tool tool = Tool.getInstance();
 
     private StoreService() {
     }
@@ -37,6 +35,7 @@ public class StoreService {
     }
     public void buyTool(String item){
         Integer cost = user.getTool(item);
+        tool.setInfo(item);
         user.useCoin(cost);
     }
 

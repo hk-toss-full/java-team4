@@ -9,6 +9,7 @@ import game.Typing;
 import hospital.Hospital;
 import info.Food;
 import info.Pet;
+import info.Tool;
 import info.User;
 import store.StoreController;
 
@@ -23,6 +24,7 @@ public class MainService {
     private static User user = User.getInstance();
     private static Pet pet = Pet.getInstance2();
     private static Food food = Food.getInstance();
+    private static Tool tool = Tool.getInstance();
 
     public static MainService getInstance() {
         if (mainService == null) {
@@ -123,8 +125,13 @@ public class MainService {
                 pet.setFullness(20);
                 break;
             case 4:
-                Typing.typing();
-                break;
+                try {
+                    System.out.println(tool.getInfo());
+                    Typing.typing();
+                    break;
+                } catch (Error e){
+                    System.out.println("시간 초과 ~~~~~~~~~~~~~~");
+                }
         }
     }
 
