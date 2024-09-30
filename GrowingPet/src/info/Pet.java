@@ -42,4 +42,8 @@ public class Pet {
         return "Pet{" + "rand=" + rand + ", types=" + Arrays.toString(types) + ", type='" + type + '\'' + ", name='"
                 + name + '\'' + '}';
     }
+
+    public static Pet getPet() {
+        return pet;
+    }
 }
