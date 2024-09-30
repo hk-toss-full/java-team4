@@ -3,6 +3,9 @@ package store;
 import global.Utils;
 import info.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static global.Utils.sc;
 
 public class StoreController {
@@ -42,7 +45,28 @@ public class StoreController {
         storeService.buyTool(item);
     }
 
+    public void myClothes(){
+        ArrayList<String> isClothes = storeService.myClothes();
+        System.out.println("--------------------");
+        System.out.print("현재 : ");
+        for (String cloth : isClothes){
+            System.out.print(cloth+" ");
+        }
+    }
 
+    public void myFood(){
+        List<String> isFood = storeService.myFood();
+        System.out.println("--------------------");
+        System.out.print("현재 : ");
+        for (String food : isFood){
+            System.out.println(food+" ");
+        }
+    }
 
+    public void useFood(){
+        String use = sc.nextLine();
+        // 예외처리
+        storeService.useFood(use);
 
+    }
 }

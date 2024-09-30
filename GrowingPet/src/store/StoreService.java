@@ -1,10 +1,20 @@
 package store;
 
+import info.Clothes;
+import info.Food;
+import info.Pet;
 import info.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StoreService {
     private static StoreService storeService;
+    Clothes clothes = Clothes.getInstance();
     User user = User.getInstance();
+    Food food = Food.getInstance();
+    Pet pet = Pet.getInstance2();
+
     private StoreService() {
     }
 
@@ -17,13 +27,42 @@ public class StoreService {
     public void buyFood(String item){
         Integer cost = user.getFood(item);
         user.useCoin(cost);
+        food.addInfo(item);
     }
     public void buyClothes(String item){
         Integer cost = user.getClothes(item);
         user.useCoin(cost);
+        clothes.setInfo(item);
+
     }
     public void buyTool(String item){
         Integer cost = user.getTool(item);
         user.useCoin(cost);
+    }
+
+    public ArrayList<String> myClothes(){
+        ArrayList<String> isClothes = clothes.getInfo();
+        return isClothes;
+    }
+
+    public List<String> myFood(){
+        return food.getInfo();
+    }
+
+    public void useFood(String item){
+        if (item == "저급 사료"){
+            food.useFood(item);
+            pet.addFullness(10);
+        } else if (item =="중급 사료") {
+            food.useFood(item);
+            pet.addFullness(30);
+        } else if(item == "고급 사료"){
+            food.useFood(item);
+            pet.addFullness(50);
+        }else{
+            // 예외처리
+        }
+        food.useFood(item);
+
     }
 }

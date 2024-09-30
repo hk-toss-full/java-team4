@@ -39,7 +39,6 @@ public class User {
             throw new IllegalArgumentException(NOT_ENOUGH_COIN);
         }
     }
-
     public static User getUser(){
         if(user == null){
             user = new User();
@@ -70,7 +69,7 @@ public class User {
     public void showUser(){
         User user= User.getUser();
         System.out.println("보유 코인: "+user.getCoin());
-        System.out.println("현재 사료 현황: "+user.getFood()+" 현재 도구 현황: "+user.getTool());
+//        System.out.println("현재 사료 현황: "+user.getFood()+" 현재 도구 현황: "+user.getTool());
     }
 }
 
