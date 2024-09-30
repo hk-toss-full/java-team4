@@ -26,9 +26,9 @@ public class Hospital {
                 isSick = true;
                 if (isSick = true) {
                     System.out.println("당신의 펫은 병에 걸렸습니다.");
-                    System.out.println("당신의 펫은 치료하려면 0번, 치료하지 않으려면 1번을 입력하세요.");
-                    int number = scanner.nextInt();
-                    if (number == 0) {
+                    System.out.println("당신의 펫은 치료하려면 '치료', 치료하지 않으면 당신의 펫은 죽습니다.");
+                    String string = scanner.nextLine();
+                    if (string.equals("치료")) {
                         getUser().setCoin(getUser().getCoin() - 300);
                         isSick = false;
                     } else {
