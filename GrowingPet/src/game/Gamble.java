@@ -35,7 +35,6 @@ public class Gamble {
                 seedMoney = 0;
                 break;
             }
-
         }
         totalSeed += seedMoney;
         System.out.println("게임 후 최종 소지 코인 : " + totalSeed);
