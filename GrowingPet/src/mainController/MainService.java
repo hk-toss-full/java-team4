@@ -10,7 +10,7 @@ import static global.Utils.sc;
 
 public class MainService {
     StoreController storeController = StoreController.getInstance();
-    Hospital hospital = new Hospital();
+//    Hospital hospital = new Hospital();
     private static MainService mainService;
     public static MainService getInstance() {
         if (mainService == null) {
@@ -59,5 +59,6 @@ public class MainService {
                 storeController.buyTool();
                 break;
         }
+        Hospital hospital = new Hospital();
     }
 }

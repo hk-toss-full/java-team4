@@ -3,14 +3,14 @@ package info;
 import java.util.*;
 
 public class Clothes {
-    private Map<String, Boolean> info = Map.of(
-            "기본 옷", false,
-            "특별 옷", false
-    );
+    private static Map<String, Boolean> info = new HashMap<>();
     private static Clothes clothes;
+    private static User user = User.getInstance();
     public static Clothes getInstance(){
         if(clothes == null){
             clothes = new Clothes();
+            info.put("기본 옷", false);
+            info.put("특별 옷", false);
         }
         return clothes;
     }

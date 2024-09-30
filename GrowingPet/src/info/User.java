@@ -26,6 +26,7 @@ public class User {
     private final int INITIAL_GOOD_TOOL = 0;
     private static final String NOT_ENOUGH_COIN = "돈이 부족합니다.";
     Food haveFood = Food.getInstance();
+    Tool haveTool = Tool.getInstance();
     Clothes haveClothes = Clothes.getInstance();
 
     public static User getInstance(){
@@ -35,10 +36,15 @@ public class User {
         return user;
     }
 
+    public Map<String, Integer> getClothes() {
+        return clothes;
+    }
+
     public void useCoin(int coin) {
         this.coin -= coin;
         if (this.coin < 0){
-            throw new IllegalArgumentException(NOT_ENOUGH_COIN);
+            System.out.println("손님 돈이 없는데요;;");
+            this.coin += coin;
         }
     }
 
@@ -66,7 +72,7 @@ public class User {
         User user= User.getInstance();
         System.out.println("보유 코인: "+user.getCoin());
         System.out.println();
-        System.out.println("현재 사료 현황: "+haveFood.getInfo()+" 현재 도구 현황: "+tool);
+        System.out.println("현재 사료 현황: "+haveFood.getInfo()+" 현재 도구 현황: "+haveTool.getInfo());
     }
 }
 
