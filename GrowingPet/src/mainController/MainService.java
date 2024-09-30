@@ -59,6 +59,7 @@ public class MainService {
             user.setCoin(user.getCoin() - 300);
             hospital.setSick(false);
             System.out.println("치료 완료~");
+            Hospital hospital = new Hospital();
         } else {
             System.out.println("당신의 펫을 치료해야합니다.");
 

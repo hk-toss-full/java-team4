@@ -18,7 +18,7 @@ public class Hospital {
 
     public Hospital() {
         int time = random.nextInt(50) + 10; // 10분에서 60분 사이의 랜덤 시간
-        setTime(1);  // 병에 걸리는 시간 설정
+        setTime(time);  // 병에 걸리는 시간 설정
     }
 
     // 펫이 병에 걸리는 타이머 설정
