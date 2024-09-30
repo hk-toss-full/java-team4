@@ -1,49 +1,48 @@
 package hospital;
 
-import static info.User.getInstance;
-
 import java.util.Random;
-import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Hospital {
     private boolean isSick = false;
-    private static final String PET_DIE_ERROR_MESSAGE = "당신의 펫은 사망하였습니다.";
     Random random = new Random();
-    Scanner scanner = new Scanner(System.in);
 
     public Hospital() {
-        int time = random.nextInt(60) + 10;
-        setTime(time);
+        int time = random.nextInt(50) + 10; // 10분에서 60분 사이의 랜덤 시간
+        setTime(1);  // 병에 걸리는 시간 설정
     }
 
+    // 펫이 병에 걸리는 타이머 설정
     private void setTime(int time) {
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             public void run() {
                 isSick = true;
-                if (isSick = true) {
+                if (isSick) {
                     System.out.println("당신의 펫은 병에 걸렸습니다.");
-                    goHospital();
-                    String string = scanner.nextLine();
-                    if (string.equals("치료")) {
-                        getInstance().setCoin(getInstance().getCoin() - 300);
-                        isSick = false;
-                    } else {
-                        System.out.println("당신의 펫은 치료받지 못해 죽었습니다.");
-
-                        throw new IllegalArgumentException(PET_DIE_ERROR_MESSAGE);
+                    for (int i = 0; i < 3; i++) {
+                        goHospital();
                     }
-                }else{
+                } else {
                     System.out.println("당신의 동물은 병에 걸리지 않았습니다.");
                 }
             }
         };
-        timer.schedule(task, time * 1000);
+        long delay = (long) time * 60 * 1000; // 분을 밀리초로 변환
+        timer.schedule(task, delay);
     }
-    private void goHospital(){
-        System.out.println("병원에 가세요");
 
+    // 병원에 가는 타이머 설정
+    private void goHospital() {
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            public void run() {
+                if (isSick) {
+                    System.out.println("병원에 가야 합니다.");
+                }
+            }
+        };
+        timer.schedule(task, 60 * 1000);
     }
 }

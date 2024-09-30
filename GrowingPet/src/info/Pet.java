@@ -29,8 +29,8 @@ public class Pet {
         System.out.print("펫의 이름을 입력하세요 : ");
         String idx = sc.nextLine();
         getInstance(idx);
-        pet.createType();
-        System.out.println("당신의 반려견은 : " + pet.getType() + "입니다.");
+        String type = pet.createType();
+        System.out.println("당신의 반려견은 : " + type + "입니다.");
         user.showUser();
     }
 
@@ -50,7 +50,7 @@ public class Pet {
 
     private Pet(String name) {
         validateLength(name);
-        this.type = createType();
+        this.type = type;
         this.name = name;
     }
 
@@ -61,7 +61,7 @@ public class Pet {
     }
 
     private String createType() {
-        int num = rand.nextInt(3);
+        int num = rand.nextInt(2);
         return types[num];
     }
 
