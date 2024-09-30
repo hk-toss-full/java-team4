@@ -1,11 +1,11 @@
 package store;
 
+import info.User;
+
 public class StoreService {
     private static StoreService storeService;
-    private StoreRepository storeRepository;
-
+    User user = User.getInstance();
     private StoreService() {
-        storeRepository = storeRepository.getInstance();
     }
 
     public static StoreService getInstance(){
@@ -13,5 +13,17 @@ public class StoreService {
             storeService = new StoreService();
         }
         return storeService;
+    }
+    public void buyFood(String item){
+        Integer cost = user.getFood(item);
+        user.useCoin(cost);
+    }
+    public void buyClothes(String item){
+        Integer cost = user.getClothes(item);
+        user.useCoin(cost);
+    }
+    public void buyTool(String item){
+        Integer cost = user.getTool(item);
+        user.useCoin(cost);
     }
 }
