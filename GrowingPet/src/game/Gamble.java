@@ -1,10 +1,14 @@
 package game;
 
+import info.User;
+
 import java.util.Scanner;
 
 public class Gamble {
     public static void main(String[] args) {
-        int totalSeed = 100;
+        User user = User.getUser();
+        int totalSeed = user.getCoin();
+//        int totalSeed = 100;
         Scanner sc = new Scanner(System.in);
         System.out.println("현재 소지 코인 : " + totalSeed +"개");
         System.out.println("게임 시작!! 판돈 입력!!");
@@ -38,5 +42,8 @@ public class Gamble {
         }
         totalSeed += seedMoney;
         System.out.println("게임 후 최종 소지 코인 : " + totalSeed);
+        user.setCoin(totalSeed);
+        user.showUser();
+
     }
 }
