@@ -39,6 +39,6 @@ public class Hospital {
                 }
             }
         };
-        timer.schedule(task, time);
+        timer.schedule(task, time * 1000);
     }
 }
