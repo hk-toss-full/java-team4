@@ -5,6 +5,7 @@ import game.Gamble;
 
 import static info.User.getInstance;
 
+import game.Typing;
 import hospital.Hospital;
 import info.Food;
 import info.Pet;
@@ -122,7 +123,7 @@ public class MainService {
                 pet.setFullness(20);
                 break;
             case 4:
-
+                Typing.typing();
                 break;
         }
     }
