@@ -1,13 +1,14 @@
 package game;
 
-import java.util.Random;
-import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
+import info.User;
+
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Typing extends Thread {
+    static User user = User.getInstance();
+    static int coin = user.getCoin();
     public static void main(String[] args) {
         String[] quiz = {
                 "군인은 현역을 면한 후가 아니면 국무위원으로 임명될 수 없다.",
@@ -21,14 +22,17 @@ public class Typing extends Thread {
                 "대통령은 제1항과 제2항의 처분 또는 명령을 한 때에는 지체없이 국회에 보고하여 그 승인을 얻어야 한다.",
                 "교육의 자주성, 전문성, 정치적 중립성 및 대학의 자율성은 법률이 정하는 바에 의하여 보장된다."
         };
+
         Scanner sc = new Scanner(System.in);
+        System.out.println("사용할 도구를 정해주세요");
+        String toolName = sc.nextLine();
         System.out.println("아래 문제를 정확히 같게 입력하세요!!");
         Timer timer = new Timer();
         double timeLimit = 20000;
         AtomicInteger answerCount = new AtomicInteger();
         AtomicInteger count = new AtomicInteger();
         AtomicBoolean gameEnded = new AtomicBoolean(false);
-        int exp=0;
+        int earnCoin=0;
         while (!gameEnded.get()) {
             int random = new Random().nextInt(quiz.length);
             System.out.println("\n===== 라운드 " + (count.get() + 1) + " =====");
@@ -59,7 +63,7 @@ public class Typing extends Thread {
                         timeOutOccurred[0] = true;
                         inputThread.interrupt();
                         System.out.println("시간 초과! 게임이 종료됩니다.");
-                        displayResults(answerCount.get(),exp);
+                        displayResults(toolName,answerCount.get(),earnCoin);
                         gameEnded.set(true);
                     }
                 }
@@ -75,7 +79,7 @@ public class Typing extends Thread {
             if (timeLimit < 1000) {
                 System.out.println("제한 시간이 1초 미만입니다. 게임이 종료됩니다.");
                 gameEnded.set(true);
-                displayResults(answerCount.get(),exp);
+                displayResults(toolName, answerCount.get(), earnCoin);
                 break;
             }
             try {
@@ -85,15 +89,22 @@ public class Typing extends Thread {
             }
             timeLimit *= 0.8;
         }
+        user.setCoin(coin+earnCoin);
+        System.out.println("현재 총 코인은 : " + coin + "개 입니다!");
         timer.cancel();
         sc.close();
         System.exit(0);
     }
-    private static void displayResults(int answerCount, int exp) {
-        exp = answerCount * 20;
+    private static void displayResults(String toolName, int answerCount, int earnCoin) {
         System.out.println("\n게임 종료!");
         System.out.println("맞춘 문제의 개수는 : " + answerCount + "개 입니다!");
-        System.out.println("획득한 경험치는 : " + exp + "입니다!");
+        if(Objects.equals(toolName, "고급 도구")){
+            earnCoin = answerCount *12;
+        }else {
+            earnCoin = answerCount *10;
+        }
+        System.out.println("획득한 코인은 : " + earnCoin + "입니다!");
         System.exit(0);
     }
 }
+
