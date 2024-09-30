@@ -5,8 +5,8 @@ import info.User;
 import java.util.Scanner;
 
 public class Gamble {
-    public static void main(String[] args) {
-        User user = User.getUser();
+    public void gamble() {
+        User user = User.getInstance();
         int totalSeed = user.getCoin();
 //        int totalSeed = 100;
         Scanner sc = new Scanner(System.in);

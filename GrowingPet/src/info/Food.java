@@ -7,7 +7,7 @@ import java.util.List;
 public class Food {
     private static Food food;
 
-    private List<String> info = Arrays.asList("저급사료", "저급사료", "저급사료");
+    private List<String> info = Arrays.asList("저급 사료", "저급 사료", "저급 사료");
     public static Food getInstance(){
         if(food == null){
             food = new Food();

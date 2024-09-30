@@ -1,7 +1,6 @@
 package hospital;
 
-import static info.Pet.getPet;
-import static info.User.getUser;
+import static info.User.getInstance;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -15,30 +14,36 @@ public class Hospital {
     Scanner scanner = new Scanner(System.in);
 
     public Hospital() {
-        setTime();
+        int time = random.nextInt(60) + 10;
+        setTime(time);
     }
 
-    private void setTime() {
-        int time = random.nextInt(60) + 10;
+    private void setTime(int time) {
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             public void run() {
                 isSick = true;
                 if (isSick = true) {
                     System.out.println("당신의 펫은 병에 걸렸습니다.");
-                    System.out.println("당신의 펫은 치료하려면 '치료', 치료하지 않으면 당신의 펫은 죽습니다.");
+                    goHospital();
                     String string = scanner.nextLine();
                     if (string.equals("치료")) {
-                        getUser().setCoin(getUser().getCoin() - 300);
+                        getInstance().setCoin(getInstance().getCoin() - 300);
                         isSick = false;
                     } else {
                         System.out.println("당신의 펫은 치료받지 못해 죽었습니다.");
 
                         throw new IllegalArgumentException(PET_DIE_ERROR_MESSAGE);
                     }
+                }else{
+                    System.out.println("당신의 동물은 병에 걸리지 않았습니다.");
                 }
             }
         };
         timer.schedule(task, time * 1000);
+    }
+    private void goHospital(){
+        System.out.println("병원에 가세요");
+
     }
 }
