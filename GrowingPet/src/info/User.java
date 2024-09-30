@@ -18,13 +18,8 @@ public class User {
             "기본 옷", 200,
             "특별 옷", 400
     );
-    private final int INITIAL_COIN = 100;
-    private final int INITIAL_NORMAL_FOOD = 3;
-    private final int INITIAL_GOOD_FOOD =0;
-    private final int INITIAL_BEST_FOOD = 0;
-    private final int INITIAL_NORMAL_TOOL = 0;
-    private final int INITIAL_GOOD_TOOL = 0;
     private static final String NOT_ENOUGH_COIN = "돈이 부족합니다.";
+
     Food haveFood = Food.getInstance();
     Tool haveTool = Tool.getInstance();
     Clothes haveClothes = Clothes.getInstance();

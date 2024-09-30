@@ -5,7 +5,7 @@ import java.util.Random;
 
 import static global.Utils.sc;
 
-public class Pet {
+public class Pet implements Runnable {
     Random rand = new Random();
 
     private static Pet pet;
@@ -113,6 +113,29 @@ public class Pet {
         fullness += range;
         if (fullness >= 100) {
             fullness = 100;
+        }
+    }
+
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                Thread.sleep(10000); // 10초 대기
+                decreaseFullness(10); // fullness 10 감소
+                if (fullness <= 0) {
+                    System.out.println("펫의 포만감이 0이 되었습니다. 사료를 먹여주세요.");
+                    break;
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void decreaseFullness(int amount) {
+        fullness -= amount;
+        if (fullness < 0) {
+            fullness = 0;
         }
     }
 }
