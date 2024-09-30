@@ -1,10 +1,13 @@
 package hospital;
 
+import mainController.MainController;
+
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Hospital {
+//    MainController mainController = MainController.getInstance();
     private boolean isSick = false;
     Random random = new Random();
 
@@ -38,6 +41,7 @@ public class Hospital {
             }
         };
         long delay = (long) time * 60 * 1000; // 분을 밀리초로 변환
+        //long delay = (long) 5000; // 분을 밀리초로 변환
         timer.schedule(task, delay);
     }
 
@@ -49,8 +53,10 @@ public class Hospital {
                 if (isSick) {
                     System.out.println("병원에 가야 합니다.");
                 }
+//                MainController.run();
             }
         };
-        timer.schedule(task, 60 * 1000);
+        timer.schedule(task, 3);
+//        MainController.run();
     }
 }

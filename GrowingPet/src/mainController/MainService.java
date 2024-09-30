@@ -6,17 +6,22 @@ import game.Gamble;
 import static info.User.getInstance;
 
 import hospital.Hospital;
+import info.Food;
 import info.Pet;
 import info.User;
 import store.StoreController;
+
+import java.sql.SQLOutput;
 
 import static global.Utils.sc;
 
 public class MainService {
     StoreController storeController = StoreController.getInstance();
     Hospital hospital = new Hospital();
-    private static MainService mainService;
-    private static User user;
+    private static MainService mainService = MainService.getInstance();
+    private static User user = User.getInstance();
+    private static Pet pet = Pet.getInstance2();
+    private static Food food = Food.getInstance();
 
     public static MainService getInstance() {
         if (mainService == null) {
@@ -34,7 +39,7 @@ public class MainService {
         Integer i = Integer.valueOf(sc.nextLine());
         switch (i) {
             case 1:
-
+                goHouse();
                 break;
             case 2:
                 goStore();
@@ -83,5 +88,39 @@ public class MainService {
                 break;
         }
         Hospital hospital = new Hospital();
+    }
+
+    public void goHouse(){
+        user.showUser();
+        System.out.println("포만감 : "+pet.getFullness());
+        System.out.println("청결도 : "+pet.getClean());
+        System.out.println("성장 레벨 : "+ pet.getLevel()+", 경험치 : "+pet.getExperience());
+        System.out.println("============액션============");
+        System.out.println("1: 밥주기, 2: 씻겨주기, 3: 산책하기, 4: 훈련하기(타자연습)");
+        Integer idx = Integer.valueOf(sc.nextLine());
+        action(idx);
+    }
+    public void action(Integer idx){
+        switch (idx){
+            case 1:
+                System.out.println(food.getInfo());
+                System.out.println("무엇을 주시겠습니까?");
+                storeController.useFood();
+                break;
+            case 2:
+                System.out.println("열심히 닦는 중");
+                System.out.println("슥싹슥싹");
+                System.out.println("히힛 오줌발싸");
+                pet.setClean(10);
+                break;
+            case 3:
+                System.out.println("산책가는 중");
+                System.out.println("냄새 맡는 중");
+                pet.setFullness(20);
+                break;
+            case 4:
+
+                break;
+        }
     }
 }
