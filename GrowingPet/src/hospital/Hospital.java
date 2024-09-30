@@ -8,6 +8,14 @@ public class Hospital {
     private boolean isSick = false;
     Random random = new Random();
 
+    public boolean isSick() {
+        return isSick;
+    }
+
+    public void setSick(boolean sick) {
+        isSick = sick;
+    }
+
     public Hospital() {
         int time = random.nextInt(50) + 10; // 10분에서 60분 사이의 랜덤 시간
         setTime(1);  // 병에 걸리는 시간 설정
